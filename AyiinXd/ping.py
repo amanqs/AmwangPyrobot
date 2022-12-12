@@ -26,26 +26,22 @@ from pyAyiin.decorator import Ayiin
 from . import *
 
 
-@Ayiin(["ping"])
+@Ayiin(["ping", "cek"])
 async def pingme(client: Client, message: Message):
-    if tgbot:
-        try:
-            xnxx = await message.reply("<b>✧</b>")
-            await xnxx.edit("<b>✧✧</b>")
-            await xnxx.edit("<b>✧✧✧</b>")
-            await xnxx.edit("<b>✧✧✧✧</b>")
-            await xnxx.edit("<b>✧✧✧✧✧</b>")
-            tgbot.me = await tgbot.get_me()
-            results = await client.get_inline_bot_results(tgbot.me.username, f"ping")
-            await message.reply_inline_bot_result(
-                results.query_id,
-                results.results[0].id,
-                reply_to_message_id=yins.ReplyCheck(message),
-            )
-            await xnxx.delete()
-        except BaseException as e:
-            await eod(xnxx, f"<b>ERROR:</b> <code>{e}</code>")
-
+    start = datetime.now()
+    uptime = await yins.get_readable_time((time.time() - StartTime))
+    xnxx = await message.reply("<b>✧</b>")
+    await xnxx.edit("<b>M</b>")
+    await xnxx.edit("<b>E</b>")
+    await xnxx.edit("<b>K</b>")
+    await xnxx.edit("<b>I</b>")
+    end = datetime.now()
+    duration = (end - start).microseconds / 1000
+    await xnxx.edit(
+        f"<b>✧ Aᴍᴀɴɢ Pʏʀᴏʙᴏᴛ ✧</b>\n\n"
+        f"<b>✧ Pɪɴɢᴇʀ :</b> <code>{duration}ms</code>\n"
+        f"<b>✧ Uᴘᴛɪᴍᴇ :</b> <code>{uptime}</code>"
+    )
 
 CMD_HELP.update(
     {"ping": (
