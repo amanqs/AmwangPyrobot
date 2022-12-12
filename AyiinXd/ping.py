@@ -20,13 +20,13 @@ from datetime import datetime
 from fipper import Client
 from fipper.types import Message
 
-from pyAyiin import CMD_HELP, tgbot
+from pyAyiin import CMD_HELP
 from pyAyiin.decorator import Ayiin
 
 from . import *
 
 
-@Ayiin(["ping", "cek"])
+@Ayiin(["ping", "yins"])
 async def pingme(client: Client, message: Message):
     start = datetime.now()
     uptime = await yins.get_readable_time((time.time() - StartTime))
@@ -42,6 +42,7 @@ async def pingme(client: Client, message: Message):
         f"<b>✧ Pɪɴɢᴇʀ :</b> <code>{duration}ms</code>\n"
         f"<b>✧ Uᴘᴛɪᴍᴇ :</b> <code>{uptime}</code>"
     )
+
 
 CMD_HELP.update(
     {"ping": (
